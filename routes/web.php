@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\AdminTagController;
+use App\Http\Controllers\Admin\AdminPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('/admin')->name('admin.')->group(function (){
+
+    Route::resource('post',AdminPostController::class)->except(['show'])->middleware('auth');
+    
+    Route::resource('tag',AdminTagController::class)->except(['show'])->middleware('auth');
+
+
+})->middleware('auth');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
