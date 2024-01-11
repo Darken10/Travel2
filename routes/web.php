@@ -52,6 +52,10 @@ Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController
         'tag'=>'[0-9]+',
     ])->middleware('auth');
 
+    Route::get('/{post}/like','storeLikePost')->name('storeLikePost')->where([
+        'post'=>'[0-9]+',
+    ])->middleware('auth');
+
 
     Route::post('/{post}','storeComment')->name('storeComment')->where([
         'post'=>'[0-9]+',
@@ -64,6 +68,8 @@ Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController
     Route::post('/{comment}/comment','storeReponse')->name('storeReponse')->where([
         'comment'=>'[0-9]+',
     ])->middleware('auth');
+
+    
     
 });
 

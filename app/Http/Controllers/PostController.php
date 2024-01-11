@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\Post\ReponseFromRequest;
 use App\Models\Post\Comment;
+use App\Models\Post\Like;
 use App\Models\Post\Reponse;
 use App\Models\Post\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -68,5 +69,25 @@ class PostController extends Controller
         return view('post.index',[
             'posts' => $tag->posts()->latest()->paginate(12),
         ]);
+    }
+
+
+    function storeLikePost(Post $post){
+        
+        $data['user_id'] = Auth::user()->id;
+        $data['post_id'] = $post->id;
+        $like =  Like::where('user_id',$data['user_id'])
+                    ->Where('post_id',$data['post_id'])
+                    ->get();
+        if( ! $like->isEmpty()){
+            $like[0]->delete();
+        }
+        else{
+            if (! Like::create($data)){
+                return back()->with('error','Nous n\'avons pas put enregistre votre like');
+            }
+        }        
+        
+        return back();
     }
 }

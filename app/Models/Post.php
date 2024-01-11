@@ -6,12 +6,13 @@ use App\Models\Post\Tag;
 use App\Models\Post\Image;
 use Illuminate\Support\Str;
 use App\Models\Post\Comment;
-use App\Models\Post\Reponse;
+use App\Models\Post\Like;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class Post extends Model
 {
@@ -66,5 +67,18 @@ class Post extends Model
         return count($this->comments);
     }
 
+    function likes():HasMany{
+        return $this->hasMany(Like::class);
+    }
+
+    function countLike(): int{
+        return count($this->likes);
+    }
+
+    function isLike(User $user){
+
+        return Like::where('user_id',$user->id)->Where('post_id',$this->id)->get()->isNotEmpty();
+         
+    }
     
 }
