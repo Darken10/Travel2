@@ -16,25 +16,21 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <link rel="stylesheet" href='{{ asset('bootstrap-5/css/bootstrap.min.css') }}'>
     </head>
     <body class="font-sans antialiased">
-        @include('admin.shared._navbar')
+        @include('shared._navbar')
 
-        <div class=" container ">
+        <div class=" container px-6">
             <!-- Page Content -->
             <!-- flash info -->
             @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                        
+                        <x-alert-success>{{ session('success') }}</x-alert-success>
                 @else
                     @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
+                    
+                    <x-alert-error>{{ session('error') }}</x-alert-error>
+                        
                     @endif
                 @endif
             <!-- fin flash info -->
@@ -44,7 +40,6 @@
             </main>
         </div>
 
-        @include('admin.shared._footer')
-        <script src="{{ asset('bootstrap-5/js/bootstrap.min.js') }}"></script>
+        @include('shared._footer')
     </body>
 </html>

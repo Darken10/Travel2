@@ -13,7 +13,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titre</th>
-                    <th scope="col">Categorie</th>
                     <th scope="col" class="text-end">Actions</th>
                 </tr>
                 </thead>
@@ -25,7 +24,9 @@
                         <tr>
                             <th scope="row">{{ $i }}</th>
                             <td>{{ Str::limit($post->title, 50, '...') }}</td>
-                            <td>{{ ($post->category == null) ? '-' : $post->category->name }}</td>
+                            <td>
+                                <a class="btn btn-success" href="{{ route('admin.comment.index',$post) }}" >Commentaire ({{ $post->countComments() }})</a>
+                            </td>
                             <td class="d-flex gap-2 justify-content-end">
                                 <form action="{{ route('admin.post.destroy',$post) }}" method="post">
                                     @csrf

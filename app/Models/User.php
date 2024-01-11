@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Post\Reponse;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,5 +49,9 @@ class User extends Authenticatable
 
     function posts():HasMany{
         return $this->hasMany(Post::class);
+    }
+
+    function reponses():HasMany{
+        return $this->hasMany(Reponse::class);
     }
 }

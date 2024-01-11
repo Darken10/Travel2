@@ -3,10 +3,14 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Post\Reponse;
 use Database\Seeders\TagSeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PostSeeder;
 use Database\Seeders\ImageSeeder;
+use Database\Seeders\CommentSeeder;
+use Database\Seeders\ReponseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +30,8 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             ImageSeeder::class,
             PostSeeder::class,
+            CommentSeeder::class,
+            ReponseSeeder::class,
         ]);
     }
 }
