@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin.layout>
     <div class="jumbotron">
         <h1 class="display-3">{{$tag->exists ? 'Modifier Une Etiquette' : 'Créer une Etiquete'}}</h1>
     </div>
@@ -9,7 +9,7 @@
         @method($tag->exists ? 'PUT' : 'POST')
 
         <div class="row">
-            <x-admin-input label="Nom : "  name="name" placeholder="Etiquette " :value="$tag->name" required />
+            <x-admin.input label="Nom : "  name="name" placeholder="Etiquette " :value="$tag->name" required />
         </div>
 
         <div class="mt-5">
@@ -19,4 +19,4 @@
 
 
 
-</x-admin-layout>
+</x-admin.layout>

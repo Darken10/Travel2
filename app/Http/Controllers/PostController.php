@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Admin\Post\CommentFormRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use App\Http\Requests\Post\ReponseFromRequest;
-use App\Models\Post\Comment;
-use App\Models\Post\Like;
-use App\Models\Post\Reponse;
 use App\Models\Post\Tag;
+use App\Models\Post\Like;
+use App\Models\Post\Comment;
+use App\Models\Post\Reponse;
+use Illuminate\Http\Request;
+use App\Models\Post\LikeComment;
+use App\Models\Post\LikeReponse;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Post\ReponseFromRequest;
+use App\Http\Requests\Admin\Post\CommentFormRequest;
 
 class PostController extends Controller
 {
     function index()
     {
         $posts = Post::latest()->paginate(12);
-
+        //dd(Auth::user()->can('view',Post::find(10)));
         return view('post.index', [
             'posts' => $posts
         ]);
@@ -90,4 +92,46 @@ class PostController extends Controller
         
         return back();
     }
+
+
+    function storeLikeComment(Comment $comment){
+        
+        $data['user_id'] = Auth::user()->id;
+        $data['comment_id'] = $comment->id;
+        $like =  LikeComment::where('user_id',$data['user_id'])
+                    ->Where('comment_id',$data['comment_id'])
+                    ->get();
+        if( ! $like->isEmpty()){
+            $like[0]->delete();
+        }
+        else{
+            if (! LikeComment::create($data)){
+                return back()->with('error','Nous n\'avons pas put enregistre votre like');
+            }
+        }        
+        
+        return back();
+    }
+
+    function storeLikeReponse(Reponse $reponse){
+        
+        $data['user_id'] = Auth::user()->id;
+        $data['reponse_id'] = $reponse->id;
+        $like =  LikeReponse::where('user_id',$data['user_id'])
+                    ->Where('reponse_id',$data['reponse_id'])
+                    ->get();
+        if( ! $like->isEmpty()){
+            $like[0]->delete();
+        }
+        else{
+            if (! LikeReponse::create($data)){
+                return back()->with('error','Nous n\'avons pas put enregistre votre like');
+            }
+        }        
+        
+        return back();
+    }
+
+    
+    
 }

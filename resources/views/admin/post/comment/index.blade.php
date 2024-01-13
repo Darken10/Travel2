@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin.layout>
     <div class="jumbotron">
         <h1 class="display-3">Les Commentaites</h1>
     </div>
@@ -6,7 +6,7 @@
     <x-post-item :$post/>
 
     @forelse ($post->comments as $comment)
-        <x-admin-comment :$comment/>
+        <x-admin.comment :$comment/>
     @empty
         <div class="p-4 text-center text-4xl uppercase text-gray-500">
             Aucun Commentaire 
@@ -15,4 +15,4 @@
 
 
 
-</x-admin-layout>
+</x-admin.layout>

@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminCommentController;
-use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function () {
             'comment' => '[0-9]+',
         ]);
         // store la reponse
-        Route::post('/{comment}/Sreponse', 'storeReponse')->where([
+        Route::post('/{comment}/Sreponse', 'storeReponse')->name('storeReponse')->where([
             'comment' => '[0-9]+',
         ]);
     });
@@ -65,10 +66,19 @@ Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController
         'comment'=>'[0-9]+',
     ])->middleware('auth');
 
-    Route::post('/{comment}/comment','storeReponse')->name('storeReponse')->where([
+    Route::post('/{comment}/reponse','storeReponse')->name('storeReponse')->where([
+        'comment'=>'[0-9]+',
+    ])->middleware('auth');
+    
+    Route::get('/{comment}/comment/like','storeLikeComment')->name('storeLikeComment')->where([
         'comment'=>'[0-9]+',
     ])->middleware('auth');
 
+    Route::get('/{reponse}/reponse/like','storeLikeReponse')->name('storeLikeReponse')->where([
+        'reponse'=>'[0-9]+',
+    ])->middleware('auth');
+
+    
     
     
 });

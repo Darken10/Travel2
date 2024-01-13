@@ -5,6 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Post\Like;
+use App\Models\Post\LikeComment;
+use App\Models\Post\LikeReponse;
 use App\Models\Post\Reponse;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -58,5 +60,13 @@ class User extends Authenticatable
 
     function likes():HasMany{
         return $this->hasMany(Like::class);
+    }
+
+    function likeComments():HasMany{
+        return $this->hasMany(LikeComment::class);
+    }
+
+    function likeReponse():HasMany{
+        return $this->hasMany(LikeReponse::class);
     }
 }

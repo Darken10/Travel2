@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin.layout>
     <div class="jumbotron">
         <h1 class="display-3">Les Commentaites</h1>
     </div>
@@ -7,7 +7,7 @@
     <form class="mb-5 " action="{{  }}" method="post">
         @csrf
         <div class="row">
-            <x-admin-input type="textarea" label="Contenu de l'article" name="content" placeholder="contenu de l'article " :value="$post->content"  />
+            <x-admin.input type="textarea" label="Contenu de l'article" name="content" placeholder="contenu de l'article " :value="$post->content"  />
         </div>
 
         <div class="mt-5">
@@ -17,4 +17,4 @@
 
 
 
-</x-admin-layout>
+</x-admin.layout>

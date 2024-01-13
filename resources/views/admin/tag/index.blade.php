@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin.layout>
 
 <div class=" d-flex justify-content-between align-items-center">
     <h3>Les Publicites</h3>
@@ -40,5 +40,5 @@
 
 
 
-</x-admin-layout>
+</x-admin.layout>
 
