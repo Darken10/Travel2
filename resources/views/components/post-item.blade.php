@@ -2,13 +2,13 @@
 
 
     <div class="grid grid-cols-1 gap-6 my-6 px-4 md:px-6 lg:px-8">
-@if ($post->images != null)
+@if ($post->images->isNotEmpty())
 
 <div class="max-w-xl mx-auto px-4 py-4 bg-white shadow-md rounded-lg">
   <div class="py-2 flex flex-row items-center justify-between">
     <div class="flex flex-row items-center">
       <a href="#" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
-        <img class="rounded-full h-8 w-8 object-cover" src="{{ asset('image/image.jpg') }}"alt="">
+        <img class="rounded-full h-8 w-8 object-cover" src="{{ asset($post->user->profileUrl) }}" alt="">
         <p class="ml-2 text-base font-bold">{{ $post->user->name }}</p>
       </a>
     </div>
@@ -17,7 +17,12 @@
     </div>
   </div>
   <div class="mt-2">
-    <img class="object-cover w-full rounded-lg" src="{{ asset('image/image.jpg') }}" alt="image">
+
+    @foreach ($post->images as $image)
+      <img class="object-cover w-full rounded-lg" src="{{ asset($image->url) }}" alt="image">
+
+    @endforeach
+
     <div class="py-2 flex flex-row items-center">
       <a href="{{ route('post.storeLikePost',$post) }}" class="no-underline">
         <button class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
@@ -35,6 +40,7 @@
         <span class="ml-1">340</span>
       </button>
     </div>
+    
   </div>
   <div class="py-2">
     <div class=" inline" >
@@ -55,6 +61,13 @@
     <p class="leading-snug">
       {!! $show ? nl2br(e($post->content())) : nl2br(e($post->contentExtrait())) !!}
     </p>
+    
+    <div class="">
+      <a href="{{ route($admin ? 'admin.likeListPost' : 'post.likeList',$post) }}">
+        <x-shared.avatars-list :post="$post" />
+      </a>
+    </div>
+
   </div>
 </div>
 

@@ -67,71 +67,78 @@ class PostController extends Controller
         }
     }
 
-    function filterByTag(Tag $tag){
-        return view('post.index',[
+    function filterByTag(Tag $tag)
+    {
+        return view('post.index', [
             'posts' => $tag->posts()->latest()->paginate(12),
         ]);
     }
 
 
-    function storeLikePost(Post $post){
-        
+    function storeLikePost(Post $post)
+    {
+
         $data['user_id'] = Auth::user()->id;
         $data['post_id'] = $post->id;
-        $like =  Like::where('user_id',$data['user_id'])
-                    ->Where('post_id',$data['post_id'])
-                    ->get();
-        if( ! $like->isEmpty()){
+        $like =  Like::where('user_id', $data['user_id'])
+            ->Where('post_id', $data['post_id'])
+            ->get();
+        if (!$like->isEmpty()) {
             $like[0]->delete();
-        }
-        else{
-            if (! Like::create($data)){
-                return back()->with('error','Nous n\'avons pas put enregistre votre like');
+        } else {
+            if (!Like::create($data)) {
+                return back()->with('error', 'Nous n\'avons pas put enregistre votre like');
             }
-        }        
-        
+        }
+
         return back();
     }
 
 
-    function storeLikeComment(Comment $comment){
-        
+    function storeLikeComment(Comment $comment)
+    {
+
         $data['user_id'] = Auth::user()->id;
         $data['comment_id'] = $comment->id;
-        $like =  LikeComment::where('user_id',$data['user_id'])
-                    ->Where('comment_id',$data['comment_id'])
-                    ->get();
-        if( ! $like->isEmpty()){
+        $like =  LikeComment::where('user_id', $data['user_id'])
+            ->Where('comment_id', $data['comment_id'])
+            ->get();
+        if (!$like->isEmpty()) {
             $like[0]->delete();
-        }
-        else{
-            if (! LikeComment::create($data)){
-                return back()->with('error','Nous n\'avons pas put enregistre votre like');
+        } else {
+            if (!LikeComment::create($data)) {
+                return back()->with('error', 'Nous n\'avons pas put enregistre votre like');
             }
-        }        
-        
+        }
+
         return back();
     }
 
-    function storeLikeReponse(Reponse $reponse){
-        
+    function storeLikeReponse(Reponse $reponse)
+    {
+
         $data['user_id'] = Auth::user()->id;
         $data['reponse_id'] = $reponse->id;
-        $like =  LikeReponse::where('user_id',$data['user_id'])
-                    ->Where('reponse_id',$data['reponse_id'])
-                    ->get();
-        if( ! $like->isEmpty()){
+        $like =  LikeReponse::where('user_id', $data['user_id'])
+            ->Where('reponse_id', $data['reponse_id'])
+            ->get();
+        if (!$like->isEmpty()) {
             $like[0]->delete();
-        }
-        else{
-            if (! LikeReponse::create($data)){
-                return back()->with('error','Nous n\'avons pas put enregistre votre like');
+        } else {
+            if (!LikeReponse::create($data)) {
+                return back()->with('error', 'Nous n\'avons pas put enregistre votre like');
             }
-        }        
-        
+        }
+
         return back();
     }
 
-    
-    
+
+    function likeList(Post $post)
+    {
+
+        return view('post.like.list', [
+            'likes' => $post->likes()->latest()->paginate(50),
+        ]);
+    }
 }

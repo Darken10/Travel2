@@ -6,7 +6,7 @@
             <!-- Comment row -->
             <div class="media flex pb-4">
               <a class="mr-4" href="#">
-                <img class="rounded-full max-w-none w-12 h-12" src="{{ asset('image/image.jpg') }}" />
+                <img class="rounded-full max-w-none w-12 h-12" src="{{ asset($comment->user->profileUrl) }}" />
               </a>
               <div class="media-body">
                 <div>

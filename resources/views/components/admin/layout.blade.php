@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }} " class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,10 +18,10 @@
 
         <link rel="stylesheet" href='{{ asset('bootstrap-5/css/bootstrap.min.css') }}'>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased h-full">
         @include('admin.shared._navbar')
 
-        <div class=" container ">
+        <div class="mt-20 container  ">
             <!-- Page Content -->
             <!-- flash info -->
             @if (session('success'))

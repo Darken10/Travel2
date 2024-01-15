@@ -13,6 +13,6 @@ class ImageSeeder extends Seeder
      */
     public function run(): void
     {
-        Image::factory(60)->create();
+        Image::factory(32)->create();
     }
 }

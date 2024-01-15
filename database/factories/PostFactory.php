@@ -17,9 +17,12 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
+        $date = fake()->dateTimeBetween('-1 year');
         return [
             'title'=> fake()->sentences(rand(1,6),asText:true),
             'content'=>fake()->paragraphs(rand(1,5),asText:true),
+            'created_at' => $date,
+            'updated_at' => $date
         ];
     }
 }

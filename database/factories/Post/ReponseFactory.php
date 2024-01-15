@@ -20,10 +20,14 @@ class ReponseFactory extends Factory
     {
         $users = User::all();
         $comments= Comment::all();
+        $date = fake()->dateTimeBetween('-1 year');
+
         return [
             'reponse' => fake()->paragraph,
             'user_id' => $users->random()->id,
             'comment_id' => $comments->random()->id,
+            'created_at' => $date,
+            'updated_at' => $date
         ];
     }
 }

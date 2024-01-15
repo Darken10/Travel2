@@ -23,6 +23,12 @@ use App\Http\Controllers\Admin\AdminCommentController;
 Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('post', AdminPostController::class)->except(['show'])->middleware('auth');
     Route::resource('tag', AdminTagController::class)->except(['show'])->middleware('auth');
+    
+    // la liste des user qui on liker le post
+    Route::get('/{post}/like/list',[AdminPostController::class,'likeListPost'])->name('likeListPost')->where([
+        'post'=>'[0-9]+',
+    ])->middleware('auth');
+
 
     Route::prefix('/post/comments')->name('comment.')->controller(AdminCommentController::class)->group(function () {
         //liste des commentaire et avec poste
@@ -54,6 +60,10 @@ Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController
     ])->middleware('auth');
 
     Route::get('/{post}/like','storeLikePost')->name('storeLikePost')->where([
+        'post'=>'[0-9]+',
+    ])->middleware('auth');
+
+    Route::get('/{post}/like/list','likeList')->name('likeList')->where([
         'post'=>'[0-9]+',
     ])->middleware('auth');
 

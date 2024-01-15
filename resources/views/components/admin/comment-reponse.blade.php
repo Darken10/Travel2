@@ -25,7 +25,7 @@
 
         <div>
             <a class="mr-4" href="#">
-                <img class="rounded-full max-w-none w-12 h-12" src="{{ asset('image/image.jpg') }}" />
+                <img class="rounded-full max-w-none w-12 h-12" src="{{ asset($reponse->user->profileUrl) }}" />
             </a>
         </div>
     </div>

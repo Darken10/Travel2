@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ImageFactory extends Factory
 {
+    public static int $i = 0;
     /**
      * Define the model's default state.
      *
@@ -16,8 +17,14 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
+        ImageFactory::$i = 1 + ImageFactory::$i;
+        $i = ImageFactory::$i;
+        $date = fake()->dateTimeBetween('-1 year');
+        
         return [
-            'url' => fake()->imageUrl(),
+            'url' => "images/posts/img_$i.jpg",
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

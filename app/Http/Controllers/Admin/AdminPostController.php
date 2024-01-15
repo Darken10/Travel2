@@ -77,4 +77,13 @@ class AdminPostController extends Controller
 
     }
 
+
+    function likeListPost(Post $post)
+    {
+        
+        return view('admin.post.like.list', [
+            'likes' => $post->likes()->latest()->paginate(50),
+        ]);
+    }
+
 }

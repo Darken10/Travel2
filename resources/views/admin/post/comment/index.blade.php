@@ -3,7 +3,7 @@
         <h1 class="display-3">Les Commentaites</h1>
     </div>
     
-    <x-post-item :$post/>
+    <x-post-item :$post admin/>
 
     @forelse ($post->comments as $comment)
         <x-admin.comment :$comment/>
