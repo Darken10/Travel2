@@ -13,8 +13,11 @@ class AdminPostController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
+        $com = Auth::user()->compagnie;
+        dd( $com->patron);
         $posts = Post::where('user_id',Auth::user()->id)->latest()->paginate(12);
 
         return view('admin.post.index',[
