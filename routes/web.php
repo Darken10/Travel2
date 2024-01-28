@@ -7,6 +7,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\Admin\Voyage\CourseController;
+use App\Http\Controllers\Admin\Voyage\LigneController;
+use App\Http\Controllers\Root\CompagnieController;
+use App\Http\Controllers\Root\PaysController;
+use App\Http\Controllers\Root\ProvinceController;
+use App\Http\Controllers\Root\RegionController;
+use App\Http\Controllers\Root\VilleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +26,34 @@ use App\Http\Controllers\Admin\AdminCommentController;
 |
 */
 
+
+/** Root  */
+Route::prefix('/root')->middleware(['auth','role:root'])->name('root.')->group(function () {
+    // Compagnie
+    Route::resource('/compagnie', CompagnieController::class)->except(['show'])->middleware('auth');
+    
+    //Ville
+    Route::resource('/ville', VilleController::class)->except(['show'])->middleware('auth');
+    Route::resource('/pays', PaysController::class)->except(['show'])->middleware('auth');
+    Route::resource('/region', RegionController::class)->except(['show'])->middleware('auth');
+    Route::resource('/province', ProvinceController::class)->except(['show'])->middleware('auth');
+
+    //
+});
+
+
+
 /** Administration  */
-Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function () {
+Route::prefix('/admin')->middleware(['auth','role:admin'])->name('admin.')->group(function () {
     Route::resource('post', AdminPostController::class)->except(['show'])->middleware('auth');
     Route::resource('tag', AdminTagController::class)->except(['show'])->middleware('auth');
+
+    // la gestion des voyage notament (lignes;voyages,les coures)
+    Route::prefix('/voyage')->name('voyage.')->group(function(){
+        Route::resource('ligne', LigneController::class)->except(['show'])->middleware('auth');
+        Route::resource('course', CourseController::class)->except(['show'])->middleware('auth');
+    });
+
     
     // la liste des user qui on liker le post
     Route::get('/{post}/like/list',[AdminPostController::class,'likeListPost'])->name('likeListPost')->where([

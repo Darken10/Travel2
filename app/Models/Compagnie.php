@@ -25,9 +25,9 @@ class Compagnie extends Model
         'note',
     ];
 
-    function patron():BelongsTo{
+    /*function patron():BelongsTo{
         return $this->belongsTo(User::class,'patron_id');
-    }
+    }*/
 
     function admins():HasMany{
         return $this->hasMany(User::class);

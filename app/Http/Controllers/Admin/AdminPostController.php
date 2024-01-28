@@ -17,7 +17,6 @@ class AdminPostController extends Controller
     public function index()
     {
         $com = Auth::user()->compagnie;
-        dd( $com->patron);
         $posts = Post::where('user_id',Auth::user()->id)->latest()->paginate(12);
 
         return view('admin.post.index',[
