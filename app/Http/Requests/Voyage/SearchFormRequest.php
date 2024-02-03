@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Root;
+namespace App\Http\Requests\Voyage;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProvinceFormRequest extends FormRequest
+class SearchFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,10 @@ class ProvinceFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=> ['required','min:2','string'],
-            'region_id'=>['exists:regions,id'],
+            'compagnie'=>['nullable','string','min:2','max:100'],
+            'depart'=>['nullable','string','min:2','max:100'],
+            'destination'=>['nullable','string','min:2','max:100'],
+            'heure'=>['nullable','string','min:2','max:100'],
         ];
     }
 }

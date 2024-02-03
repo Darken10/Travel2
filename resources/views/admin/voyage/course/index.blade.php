@@ -26,7 +26,7 @@
                     @endphp
                     @foreach ($courses as $course)
                         <tr>
-                            <th scope="row">{{ $i }}</th>
+                            <th scope="row" >{{ $i }}</th>
                             <td>{{ $course->ligne->depart->name }} ({{ $course->ligne->depart->pays->name }})</td>
                             <td>{{ $course->ligne->destination->name }} ({{ $course->ligne->destination->pays->name }})</td>
                             <td> 0 km</td>

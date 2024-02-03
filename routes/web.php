@@ -3,17 +3,19 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\VoyageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Root\PaysController;
+use App\Http\Controllers\Root\VilleController;
+use App\Http\Controllers\Root\RegionController;
+use App\Http\Controllers\Root\ProvinceController;
 use App\Http\Controllers\Admin\AdminTagController;
+use App\Http\Controllers\Root\CompagnieController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminCommentController;
-use App\Http\Controllers\Admin\Voyage\CourseController;
 use App\Http\Controllers\Admin\Voyage\LigneController;
-use App\Http\Controllers\Root\CompagnieController;
-use App\Http\Controllers\Root\PaysController;
-use App\Http\Controllers\Root\ProvinceController;
-use App\Http\Controllers\Root\RegionController;
-use App\Http\Controllers\Root\VilleController;
+use App\Http\Controllers\Admin\Voyage\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +55,6 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->name('admin.')->grou
         Route::resource('ligne', LigneController::class)->except(['show'])->middleware('auth');
         Route::resource('course', CourseController::class)->except(['show'])->middleware('auth');
     });
-
     
     // la liste des user qui on liker le post
     Route::get('/{post}/like/list',[AdminPostController::class,'likeListPost'])->name('likeListPost')->where([
@@ -79,6 +80,7 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->name('admin.')->grou
 
 
 /** Client */
+//Post
 Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController::class)->group(function () {
     Route::get('/','index')->name('index');
     
@@ -119,12 +121,24 @@ Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController
         'reponse'=>'[0-9]+',
     ])->middleware('auth');
 
-    
-    
+});
+
+// les voyages
+Route::prefix('/voyage')->name('voyage.')->controller(VoyageController::class)->middleware('auth')->group(function(){
+    Route::get('/','index')->name('index');
+    Route::post('/','search');
+    Route::prefix('/ticket')->name('ticket.')->controller(TicketController::class)->middleware('auth')->group(function(){
+        Route::post('/{voyage}','acheter')->name('acheter')->where([
+            'voyage'=>'[0-9]+',
+        ]);
+    });
     
 });
 
 
+
+
+/** Auth */
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

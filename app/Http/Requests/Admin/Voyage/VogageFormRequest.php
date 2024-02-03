@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Voyage;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class VilleFormRequest extends FormRequest
+class VogageFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class VilleFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'admin_id' => ['exists:users,id'],
+            'course_id' => ['exists:courses,id'],
+            'compagnie_id' => ['exists:compagnies,id'],
+            'statut_id' => ['exists:statuts,id']
         ];
     }
 }

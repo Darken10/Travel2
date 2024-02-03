@@ -22,8 +22,8 @@ class CourseFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'depart_id' => ['int'],
-            'destination_id' => ['int'],
+            'depart_id' => ['exists:villes,id'],
+            'destination_id' => ['exists:villes,id'],
             'heure_depart' => ['string'],
             'heure_arriver' => ['string'],
             

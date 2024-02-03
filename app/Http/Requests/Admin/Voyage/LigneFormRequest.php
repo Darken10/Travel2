@@ -22,8 +22,8 @@ class LigneFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'destination_id' => ['int'],
-            'depart_id' => ['int'],
+            'destination_id' => ['exists:villes,id'],
+            'depart_id' => ['exists:villes,id'],
         ];
     }
 }

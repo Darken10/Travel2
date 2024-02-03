@@ -11,6 +11,7 @@ use App\Models\Post\LikeComment;
 use App\Models\Post\LikeReponse;
 use App\Models\Voyage\Course;
 use App\Models\Voyage\Ligne;
+use App\Models\Voyage\Voyage;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -91,4 +92,8 @@ class User extends Authenticatable
     function courses(){
         return $this->hasMany(Course::class);
     }
+
+    function voyages():HasMany{
+        return $this->hasMany(Voyage::class,'admin_id');
+    } 
 }
