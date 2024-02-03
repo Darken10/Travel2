@@ -7,6 +7,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\Root\CompagnieController;
+use App\Http\Controllers\Root\PaysController;
+use App\Http\Controllers\Root\ProvinceController;
+use App\Http\Controllers\Root\RegionController;
+use App\Http\Controllers\Root\VilleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +23,23 @@ use App\Http\Controllers\Admin\AdminCommentController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+/** Root  */
+Route::prefix('/root')->middleware('auth')->name('root.')->group(function () {
+    // Compagnie
+    Route::resource('/compagnie', CompagnieController::class)->except(['show'])->middleware('auth');
+    
+    //Ville
+    Route::resource('/ville', VilleController::class)->except(['show'])->middleware('auth');
+    Route::resource('/pays', PaysController::class)->except(['show'])->middleware('auth');
+    Route::resource('/region', RegionController::class)->except(['show'])->middleware('auth');
+    Route::resource('/province', ProvinceController::class)->except(['show'])->middleware('auth');
+
+    //
+});
+
+
 
 /** Administration  */
 Route::prefix('/admin')->middleware('auth')->name('admin.')->group(function () {

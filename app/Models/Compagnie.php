@@ -19,14 +19,14 @@ class Compagnie extends Model
         'slogant',
         'description',
         'code',
-        'patron_id',
+        'patron',
         'isActive',
         'statut',
         'note',
     ];
 
     function patron():BelongsTo{
-        return $this->belongsTo(User::class,'patron_id');
+        return $this->belongsTo(User::class,'patron');
     }
 
     function admins():HasMany{

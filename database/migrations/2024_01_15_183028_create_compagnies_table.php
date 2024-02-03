@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('slogant')->nullable();
             $table->string('description')->nullable();
             $table->string('code')->unique();
-            $table->foreignIdFor(User::class,'patron_id')->constrained()->nullOnDelete();
+            //$table->unsignedBigInteger('patron_id');
+            $table->foreignId('patron')->references('user_id')->on('users')->nullable()->constrained()->nullOnDelete();
+            //$table->foreignIdFor(User::class,'patron')->nullable()->constrained()->nullOnDelete();
             $table->boolean('isActive')->default(False);
             $table->string('statut')->default('valide');
             $table->integer('note')->default(0);
