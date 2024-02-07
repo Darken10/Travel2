@@ -23,7 +23,7 @@ class RegionFormRequest extends FormRequest
     {
         return [
             'name'=> ['required','min:2','string'],
-            'pays_id'=>['int'],
+            'pays_id'=>['exists:pays,id'],
         ];
     }
 }

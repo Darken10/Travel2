@@ -23,7 +23,7 @@ class VilleFormRequest extends FormRequest
     {
         return [
             'name'=> ['required','min:2','string'],
-            'province_id'=>['int']
+            'province_id'=>['exists:provinces,id']
         ];
     }
 }

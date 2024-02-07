@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Voyage\Voyage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,17 +20,21 @@ class Compagnie extends Model
         'slogant',
         'description',
         'code',
-        'patron',
+        'patron_id',
         'isActive',
         'statut',
         'note',
     ];
 
-    function patron():BelongsTo{
-        return $this->belongsTo(User::class,'patron');
-    }
+    /*function patron():BelongsTo{
+        return $this->belongsTo(User::class,'patron_id');
+    }*/
 
     function admins():HasMany{
         return $this->hasMany(User::class);
+    }
+
+    function voyages():HasMany{
+        return $this->hasMany(Voyage::class);
     }
 }

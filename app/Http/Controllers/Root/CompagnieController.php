@@ -39,7 +39,7 @@ class CompagnieController extends Controller
     public function store( CompagnieFormRequest $request )
     {
         $data = $request->validated();
-        $data['code'] = '12345678';
+        $data['code'] = uniqid();
         //dd($data);
         $compagnie = new Compagnie();
         $compagnie->name = $data['name'];

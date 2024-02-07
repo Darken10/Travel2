@@ -23,7 +23,7 @@ class ProvinceFormRequest extends FormRequest
     {
         return [
             'name'=> ['required','min:2','string'],
-            'region_id'=>['int'],
+            'region_id'=>['exists:regions,id'],
         ];
     }
 }
