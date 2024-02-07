@@ -17,12 +17,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
-    <body class="font-sans antialiased h-screen justify-center" style="background: #edf2f7;">
+    <body class="font-sans antialiased">
         @include('shared._navbar')
 
-
-
-
+        <div class=" container px-6">
+            <!-- Page Content -->
             <!-- flash info -->
             @if (session('success'))
                         
