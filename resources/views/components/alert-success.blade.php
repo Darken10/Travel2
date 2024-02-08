@@ -1,6 +1,7 @@
 <div
-class="font-regular relative block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100 "
+class=" z-0 font-regular relative block w-full rounded-lg bg-green-500 p-4 text-base leading-5 text-white opacity-100 "
 data-dismissible="alert"
+style="z-index: 1"
 >
 <div class="mr-12">{{ $slot }}</div>
 <div

@@ -17,7 +17,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-gray-100"  >
         @include('shared._navbar')
 
         <div class=" container px-6">
@@ -29,13 +29,13 @@
                 @else
                     @if (session('error'))
                     
-                    <x-alert-error>{{ session('error') }}</x-alert-error>
+                        <x-alert-error>{{ session('error') }}</x-alert-error>
                         
                     @endif
                 @endif
             <!-- fin flash info -->
 
-            <main >
+            <main class="mt-24" >
                 {{ $slot }}
             </main>
         </div>

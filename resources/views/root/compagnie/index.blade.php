@@ -26,7 +26,7 @@
                             <th scope="row">{{ $i }}</th>
                             <td>{{ $compagnie->name }}</td>
                             <td>{{ $compagnie->sigle }}</td>
-                            <td>{{ Str::limite($compagnie->slogant,50) }}</td>
+                            <td>{{ Str::limit($compagnie->slogant,50) }}</td>
 
                             <td class="d-flex gap-2 justify-content-end">
                                 <form action="{{ route('root.compagnie.destroy',$compagnie) }}" method="post">

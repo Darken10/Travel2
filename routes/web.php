@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\Voyage\LigneController;
 use App\Http\Controllers\Admin\Voyage\CourseController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,7 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->name('admin.')->grou
 Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController::class)->group(function () {
     Route::get('/','index')->name('index');
     
+    
     Route::get('/{post}','show')->name('show')->where([
         'post'=>'[0-9]+',
     ])->middleware('auth');
@@ -127,15 +129,25 @@ Route::prefix('/')->name('post.')->middleware('auth')->controller(PostController
 Route::prefix('/voyage')->name('voyage.')->controller(VoyageController::class)->middleware('auth')->group(function(){
     Route::get('/','index')->name('index');
     Route::post('/','search');
+    
+    Route::get('/{voyage}','show')->name('show')->where([
+        'voyage'=>'[0-9]+',
+    ]);
     Route::prefix('/ticket')->name('ticket.')->controller(TicketController::class)->middleware('auth')->group(function(){
         Route::post('/{voyage}','acheter')->name('acheter')->where([
             'voyage'=>'[0-9]+',
         ]);
+        
     });
     
 });
 
 
+
+
+Route::middleware('auth')->name('user.')->group(function () {
+    Route::get('/user/profile', [UserController::class,'showProfile'])->name('profile.show');
+});
 
 
 /** Auth */

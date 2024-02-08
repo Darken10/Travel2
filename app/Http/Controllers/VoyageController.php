@@ -30,7 +30,7 @@ class VoyageController extends Controller
             }
             //dd($compagnies_id);
 
-            $voyages = $voyages->whereIn('compagnie_id',$compagnies_id)->get();
+            $voyages = $voyages->whereIn('compagnie_id',$compagnies_id);
             //dd($voyages);
         }
 
@@ -41,19 +41,24 @@ class VoyageController extends Controller
                 $villes_id[] = $ville->id;
             }
             
+            
             $lignes = Ligne::query()->whereIn('depart_id',$villes_id)->get();
             
             $lignes_id = [];
             foreach($lignes as $ligne){
                 $lignes_id[] = $ligne->id;
             }
+
+            
             $courses = Course::whereIn('ligne_id',$lignes_id)->get();
 
             $courses_id = [];
             foreach($courses as $course){
                 $courses_id[] = $course->id;
             }
+            
             $voyages = $voyages->whereIn('course_id',$courses_id);
+            
         }
 
         if($a = $data['destination']){
@@ -80,7 +85,7 @@ class VoyageController extends Controller
         }
 
         if($a = $data['heure']){
-            $courses = Course::orWhere('course$courses_depart','>=',"$a")->get();
+            $courses = Course::orWhere('heure_depart','>=',"$a")->get();
             $courses_id = [];
             foreach($courses as $course){
                 $courses_id[] = $course->id;
@@ -88,9 +93,19 @@ class VoyageController extends Controller
             $voyages = $voyages->whereIn('course_id',$courses_id);
         }
 
-        $voyages = $voyages;
+        $voyages = $voyages->get();
+        //dd($voyages);
+        
         return view('voyage.index',[
             'voyages' => $voyages
+        ]);
+    }
+
+
+    public function show(Voyage $voyage){
+        
+        return view('voyage.show',[
+            'voyage' => $voyage
         ]);
     }
 }
