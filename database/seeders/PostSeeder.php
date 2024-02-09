@@ -20,7 +20,7 @@ class PostSeeder extends Seeder
         $users = User::all();
         $tags = Tag::all();
         $images = Image::all();
-        Post::factory(40)->sequence(fn () => [
+        Post::factory(15)->sequence(fn () => [
             'user_id' => $users->random()
         ])
         ->create()

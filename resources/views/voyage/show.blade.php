@@ -1,3 +1,3 @@
 <x-layout>
-    @dd($voyage)
+    <x-voyage.show :$voyage />
 </x-layout>

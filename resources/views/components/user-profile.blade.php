@@ -2,7 +2,7 @@
 <div class=" flex mx-auto justify-center content-center">
     <div class=" block mt-40 mb-2  ">
 
-        <div class="  mx-4 bg-white m-4 gap-2 shadow-lg py-4 max-w-xl  justify-center rounded-lg ">
+        <div class="  mx-4 bg-white m-4 gap-2 shadow-xl py-4 max-w-xl  justify-center rounded-lg ">
             <div class="-mt-20 w-40 h-40 rounded-full flex justify-center align-middle mx-auto">
                 <img class="  rounded-full" src="{{ asset('images/faces/face1.jpg') }}" >
                 <div class="flex relative right-6 top-6">

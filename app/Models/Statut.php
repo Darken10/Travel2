@@ -14,4 +14,8 @@ class Statut extends Model
     function voyages():HasMany{
         return $this->hasMany(Voyage::class);
     }
+
+    function ticket():HasMany{
+        return $this->hasMany(Ticket::class);
+    }
 }
