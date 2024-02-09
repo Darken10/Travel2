@@ -4,10 +4,12 @@ namespace App\Models\Voyage;
 
 use App\Models\Compagnie;
 use App\Models\Statut;
+use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Voyage extends Model
 {
@@ -57,5 +59,9 @@ class Voyage extends Model
 
     function statut():BelongsTo{
         return $this->belongsTo(Statut::class);
+    }
+
+    function tickets():HasMany{
+        return $this->hasMany(Ticket::class);
     }
 }

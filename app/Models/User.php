@@ -101,4 +101,8 @@ class User extends Authenticatable
     function voyages():HasMany{
         return $this->hasMany(Voyage::class,'admin_id');
     } 
+
+    function tickets():HasMany{
+        return $this->hasMany(Ticket::class);
+    }
 }
