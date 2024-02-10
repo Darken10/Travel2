@@ -1,45 +1,22 @@
 <x-layout>
    
     <div>
-        <form method="post" class="row">
+        <form method="post">
             @csrf
-            <x-input name="compagnie" placeholder="Compagnie..." class="gap-2 "/>
-            <x-input name="depart" placeholder="Depart..." class="ok"/>
-            <x-input name="destination" placeholder="Destination..." class="ok"/>
-            <x-input name="heure" type="time" placeholder="Heure..." class="ok"/>
-           <x-btn-primary>Rechercher</x-btn-primary>
+            <div  class=" columns-5 gap-2 ">
+                <x-input name="compagnie" placeholder="Compagnie..." inputClass="mx-4" :value="request()->input('compagnie')"  class="gap-2 "/>
+                <x-input name="depart" placeholder="Depart..." inputClass="mx-4" :value="request()->input('depart')" class="ok"/>
+                <x-input name="destination" placeholder="Destination..." inputClass="mx-4" :value="request()->input('destination')" class="ok"/>
+                <x-input name="heure" type="time" placeholder="Heure..." inputClass="mx-4" :value="request()->input('time')" class="ok"/>
+                <x-btn-primary class="mx-4">Rechercher</x-btn-primary>
+            </div>
+            
         </form>
     </div>
     <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Compagnie</th>
-                    <th>Depart</th>
-                    <th>Destination</th>
-                    <th>Distance</th>
-                    <th>Heure Depart</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($voyages as $voyage)
-                    <tr>
-                        <td><b>{{ $voyage->compagnie->sigle }}</b></td>
-                        <td>{{ $voyage->depart()->name }}</td>
-                        <td>{{ $voyage->destination()->name }}</td>
-                        <td>{{ $voyage->distance() ?? '0' }} Km</td>
-                        <td>{{ $voyage->heureDepart() }}</td>
-                        <td>
-                            <form action="{{ route('voyage.ticket.acheter',$voyage) }}" method="post">
-                                @csrf
-                                <button >acheter</button>
-                            </form>
-
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+       
+        <x-table-voyage :$voyages />
+ 
+        
     </div>    
 </x-layout>

@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Compagnie;
+use App\Models\Post\Comment;
 use App\Models\Post\Like;
 use App\Models\Post\Reponse;
 use App\Models\Post\LikeComment;
@@ -67,6 +68,10 @@ class User extends Authenticatable
 
     function likes():HasMany{
         return $this->hasMany(Like::class);
+    }
+
+    function comments():HasMany{
+        return $this->hasMany(Comment::class);
     }
 
     function likeComments():HasMany{

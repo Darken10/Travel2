@@ -25,6 +25,10 @@
                             <th scope="row">{{ $i }}</th>
                             <td>{{ $compagnie->name }}</td>
                             <td>{{ $compagnie->sigle }}</td>
+<<<<<<< HEAD
+=======
+                            <td>{{ Str::limit($compagnie->slogant,50) }}</td>
+>>>>>>> bb8a5a9 (    => la mise a nivau)
 
                             <td class="d-flex gap-2 justify-content-end">
                                 <form action="{{ route('root.compagnie.destroy',$compagnie) }}" method="post">
