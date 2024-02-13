@@ -1,117 +1,86 @@
+@props(['voyage_id','ticket'])
+
+@php
+    $voyage = App\Models\Voyage\Voyage::find($voyage_id)
+@endphp
 
 <!-- Table -->
-<div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+<div class="w-full mx-auto bg-white shadow-lg rounded-md border border-gray-200 py-4">
     <header class="px-5 py-4 border-b border-gray-100">
-        <h2 class="font-semibold text-gray-800 capitalize">liste des Tickets</h2>
+        <h2 class="font-semibold text-gray-800 capitalize flex justify-between">{{ $voyage->depart()->name.' - '.$voyage->destination()->name }}  <span class=" text-2xl">{{ $voyage->heureDepart() }}</span> </h2>
     </header>
+
+    @if (! $ticket->isEmpty())
     <div class="p-3">
         <div class="overflow-x-auto">
             <table class="table-auto w-full">
                 <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
                         <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-left">Name</div>
+                            <div class="font-semibold text-center">Ticket</div>
+                        </th>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-left">Nom Prenom</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
                             <div class="font-semibold text-left">Email</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-left">Spent</div>
+                            <div class="font-semibold text-left">Statut</div>
                         </th>
-                        <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-center">Country</div>
-                        </th>
+                        
                         
                     </tr>
                 </thead>
                 <tbody class="text-sm divide-y divide-gray-100">
-                    <tr>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{ asset('images/faces/face4.jpg') }}" width="40" height="40" alt="Alex Shatov"></div>
-                                <div class="font-medium text-gray-800">Alex Shatov</div>
-                            </div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left">alexshatov@gmail.com</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left font-medium text-green-500">$2,890.66</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-lg text-center">??</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{ asset('images/faces/face11.jpg') }}" width="40" height="40" alt="Philip Harbach"></div>
-                                <div class="font-medium text-gray-800">Philip Harbach</div>
-                            </div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left">philip.h@gmail.com</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left font-medium text-green-500">$2,767.04</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-lg text-center">??</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{ asset('images/faces/face10.jpg') }}" width="40" height="40" alt="Mirko Fisuk"></div>
-                                <div class="font-medium text-gray-800">Mirko Fisuk</div>
-                            </div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left">mirkofisuk@gmail.com</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left font-medium text-green-500">$2,996.00</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-lg text-center">??</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{ asset('images/faces/face2.jpg') }}" width="40" height="40" alt="Olga Semklo"></div>
-                                <div class="font-medium text-gray-800">Olga Semklo</div>
-                            </div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left">olga.s@cool.design</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left font-medium text-green-500">$1,220.66</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-lg text-center">??</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{ asset('images/faces/face1.jpg') }}" width="40" height="40" alt="Burak Long"></div>
-                                <div class="font-medium text-gray-800">Burak Long</div>
-                            </div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left">longburak@gmail.com</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-left font-medium text-green-500">$1,890.66</div>
-                        </td>
-                        <td class="p-2 whitespace-nowrap">
-                            <div class="text-lg text-center">??</div>
-                        </td>
-                    </tr>
+                    
+                    @foreach ($ticket as $tk)
+                        <tr>
+                            <td class="p-2 whitespace-nowrap">
+                                <div class="text-lg text-center">{{ $tk->code }}</div>
+                            </td>
+                            <td class="p-2 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="{{ $tk->user->profileUrl }}" width="40" height="40" alt="Alex Shatov"></div>
+                                    <div class="font-medium text-gray-800">{{ $tk->user->name }}</div>
+                                </div>
+                            </td>
+                            <td class="p-2 whitespace-nowrap">
+                                <div class="text-left">{{ $tk->user->email }}</div>
+                            </td>
+                            <td class="p-2 whitespace-nowrap">
+                                <div class="text-left font-medium text-green-500">{{ $tk->statut->name }}</div>
+                            </td>
+                            
+                        </tr>
+                    @endforeach
+                    
                 </tbody>
+                <tfoot class="text-lg divide-y divide-gray-100  ">
+                    <tr class=" border-t border-gray-400 ">
+                        <td colspan="3" class=" px-4 col-span-3 py-2">
+                            Nombres :
+                        </td>
+                        <td class="py-2">
+                            <span class=" font-semibold">{{ count($ticket) }}</span> Passagers
+                        </td>
+                    </tr>
+                    <tr >
+                        <td colspan="3" class=" px-4 col-span-3 py-2">
+                            Total :
+                        </td>
+                        <td class="py-2">
+                            <span class=" font-semibold">1000</span> F CFA
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
+    @else
+        <span class=" text-4xl font-bold uppercase text-gray-500 flex justify-center align-middle" >
+            Aucun passager
+        </span>
+    @endif
+    
 </div>

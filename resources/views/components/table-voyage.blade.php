@@ -36,6 +36,7 @@
                     @php
                         $a = 0
                     @endphp
+                    
                     @foreach ($voyages as $voyage)
                         <tr class=" {{ ($a%2 != 0) ? 'bg-slate-100' :'' }} ">
                             <td class="p-2 whitespace-nowrap text-center">
@@ -69,6 +70,10 @@
                     
                 </tbody>
             </table>
+        </div>
+
+        <div>
+            {{ $voyages->links() }}
         </div>
     </div>
 </div>

@@ -27,6 +27,27 @@
                     <td class="px-2 ">STAF</td>
                 </tr>
             </table>
+
+            <form action="" method="post">
+                @csrf
+                <div class="flex mx-auto justify-end my-2">
+                    <div class="">
+                        <input type="checkbox" name="condition" id="condition">
+                        <span class="ml-2">
+                            <a href="#" class="text-blue-600">J'accept les conditions</a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex mx-auto justify-end my-4">
+                    <x-btn-primary>Reserver</x-btn-primary>
+                </div>
+
+            </form>
+
+        </div>
+        <div>
+
         </div>
     </div>
 </div>

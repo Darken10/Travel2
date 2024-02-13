@@ -3,10 +3,12 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\VoyageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Root\PaysController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Root\VilleController;
 use App\Http\Controllers\Root\RegionController;
 use App\Http\Controllers\Root\ProvinceController;
@@ -16,7 +18,6 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\Voyage\LigneController;
 use App\Http\Controllers\Admin\Voyage\CourseController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,9 @@ Route::prefix('/admin')->middleware(['auth','role:admin'])->name('admin.')->grou
             'comment' => '[0-9]+',
         ]);
     });
+
+    // Dashbord
+    Route::get('/', [HomeController::class,'dashbord'])->name('index');
 });
 
 
@@ -133,13 +137,22 @@ Route::prefix('/voyage')->name('voyage.')->controller(VoyageController::class)->
     Route::get('/{voyage}','show')->name('show')->where([
         'voyage'=>'[0-9]+',
     ]);
-    Route::prefix('/ticket')->name('ticket.')->controller(TicketController::class)->middleware('auth')->group(function(){
-        Route::post('/{voyage}','acheter')->name('acheter')->where([
-            'voyage'=>'[0-9]+',
-        ]);
-        
-    });
+    Route::post('/{voyage}','reserver')->where([
+        'voyage'=>'[0-9]+',
+    ]);
+
+});
+
+Route::prefix('/ticket')->name('ticket.')->controller(TicketController::class)->middleware('auth')->group(function(){
     
+    Route::get('/mes-tickets','mesTickets')->name('mes-tickets');
+    Route::get('/mes-tickets/{ticket}','show')->name('show');
+
+    Route::post('/{ticket}','acheter')->name('acheter')->where([
+        'ticket'=>'[0-9]+',
+    ]);
+
+
 });
 
 

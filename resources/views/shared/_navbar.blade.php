@@ -74,7 +74,7 @@
           <li class="py-2 lg:py-0 ">
             <a
               class="text-blue-600 font-bold no-underline hover:pb-2 hover:border-b-4 hover:border-blue-400"
-              href="#"
+              href="{{ route('voyage.index') }}"
             >
               Voyage
             </a>
