@@ -1,7 +1,7 @@
 @props(['ticket'])
 
 @if ($ticket->statut->name == 'Reserver')
-    <a href="{{ route('ticket.show',$ticket) }}">
+    <a href="{{ route('ticket.show',$ticket) }}" class=" z-10">
         <div class=" mt-4 flex bg-white border-l-4 border-blue-600 rounded-lg p-3 shadow-xl mx-4">
             <div class="mr-4">
                 <img class=" h-full rounded-l-xl max-w-24" src="{{ asset('image/image.jpg') }}"   alt="" srcset="">

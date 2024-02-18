@@ -36,8 +36,11 @@
             <!-- fin flash info -->
 
             <main class="mt-24" >
+
                 {{ $slot }}
             </main>
+
+            <x-shared.chat-support />
         </div>
 
         @include('shared._footer')
