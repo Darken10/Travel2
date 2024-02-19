@@ -146,9 +146,11 @@ Route::prefix('/voyage')->name('voyage.')->controller(VoyageController::class)->
 Route::prefix('/ticket')->name('ticket.')->controller(TicketController::class)->middleware('auth')->group(function(){
     
     Route::get('/mes-tickets','mesTickets')->name('mes-tickets');
-    Route::get('/mes-tickets/{ticket}','show')->name('show');
+    Route::get('/mes-tickets/{ticket}','show')->name('show')->where([
+        'ticket'=>'[0-9]+',
+    ]);
 
-    Route::post('/{ticket}','acheter')->name('acheter')->where([
+    Route::post('/mes-tickets/{ticket}','acheter')->name('acheter')->where([
         'ticket'=>'[0-9]+',
     ]);
 

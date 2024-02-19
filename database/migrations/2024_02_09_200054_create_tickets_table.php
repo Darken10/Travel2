@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Voyage::class);
             $table->string('numero');
             $table->integer('code',unsigned:true);
+            $table->date('date')->nullable();
             $table->foreignIdFor(Statut::class)->default(1);
             $table->timestamps();
         });

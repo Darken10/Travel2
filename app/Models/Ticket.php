@@ -36,6 +36,11 @@ class Ticket extends Model
         return $this->voyage->heureDepart();
     }
 
+    function heureArriver(){
+        return $this->voyage->heureArriver();
+    }
+
+
     function depart(){
         return $this->voyage->depart();
     }
@@ -45,9 +50,14 @@ class Ticket extends Model
     }
 
     function distance(){
-        return $this->voyage->destination();
+        return $this->voyage->course->ligne->distance ?? '0';
     }
+
+    function prix(){
+        return $this->voyage->prix ?? '0';
+    }
+
     function compagnie(){
-        return $this->voyage->compagnie();
+        return $this->voyage->compagnie;
     }
 }

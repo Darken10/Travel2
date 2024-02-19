@@ -40,7 +40,7 @@
                 {{ $slot }}
             </main>
 
-            <x-shared.chat-support />
+            {{-- <x-shared.chat-support/> --}}
         </div>
 
         @include('shared._footer')

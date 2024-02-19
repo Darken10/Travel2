@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(Course::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(Statut::class);
             $table->foreignIdFor(User::class,'admin_id');
+            $table->integer('prix')->default(0);
             $table->timestamps();
         });
     }

@@ -6,13 +6,14 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use App\Models\Voyage\Voyage;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Ticket\TicketRequest;
 
 class TicketController extends Controller
 {
-    function acheter(Request $request,Voyage $voyage){
+    function acheter(TicketRequest $request,Ticket $ticket){
 
         return view('ticket.acheter',[
-            'voyage'=> $voyage,
+            'ticket'=> $ticket,
             'user'=>$request->user(),
         ]);
     }

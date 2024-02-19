@@ -11,7 +11,7 @@
                     <span class=" font-semibold">{{ $ticket->depart()->name }}- {{ $ticket->destination()->name }}</span>
                 </div>
                 <div>
-                    <span class=" italic flex justify-center mx-auto text-sm">{{ $ticket->compagnie->name }}</span>
+                    <span class=" italic flex justify-center mx-auto text-sm">{{ $ticket->compagnie()->name }}</span>
                 </div>
                 <div>
                     <span class=" italic flex justify-center mx-auto text-sm">{{ $ticket->heureDepart() }}</span>

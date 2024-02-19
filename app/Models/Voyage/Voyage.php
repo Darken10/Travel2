@@ -40,6 +40,9 @@ class Voyage extends Model
     function heureDepart(){
         return $this->course->heure_depart;
     }
+    function heureArriver(){
+        return $this->course->heure_arriver;
+    }
 
     function distance(){
         return $this->course->ligne->distance;
